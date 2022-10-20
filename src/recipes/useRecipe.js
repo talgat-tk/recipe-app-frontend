@@ -4,6 +4,7 @@ import {RECIPES_URL} from "./useRecipes";
 
 export default function useRecipe() {
     const [recipe, setRecipe] = useState(null)
+    const [isRecipeEdited, setIsRecipeEdited] = useState(false)
     const [isError, setIsError] = useState(false)
 
     function fetchRecipe(recipeId) {
@@ -34,6 +35,7 @@ export default function useRecipe() {
         axios.put(`${RECIPES_URL}${recipe.id}/`, newRecipe)
             .then((response) => {
                 setRecipe(response.data)
+                setIsRecipeEdited(true)
                 setIsError(false)
             })
             .catch(error => {
@@ -42,5 +44,5 @@ export default function useRecipe() {
             })
     }
 
-    return {recipe, fetchRecipe, createRecipe, editRecipe, isError}
+    return {recipe, fetchRecipe, createRecipe, editRecipe, isRecipeEdited, isError}
 }
