@@ -10,6 +10,12 @@ describe('useRecipes Fetching Test Suite', function () {
     afterEach(() => server.resetHandlers())
     afterAll(() => server.close())
 
+    test('Initially empty', async function() {
+        const {result} = renderHook(useRecipes)
+
+        expect(result.current.recipes).toEqual([])
+    })
+
     test('Fetch with correct server', async function () {
         const mockRecipes = [{
             id: '1',
@@ -36,8 +42,6 @@ describe('useRecipes Fetching Test Suite', function () {
         )
 
         const {result} = renderHook(useRecipes)
-
-        expect(result.current.recipes).toEqual([])
 
         await act(result.current.fetchRecipes)
 
