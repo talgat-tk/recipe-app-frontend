@@ -152,6 +152,7 @@ describe('useRecipe Test Suite', function () {
         await act(() => result.current.editRecipe(mockEditPayload))
 
         expect(result.current.isError).toBeFalsy()
+        expect(result.current.isRecipeEdited).toBeTruthy()
         expect(result.current.recipe).toEqual({id: '100', ...mockEditPayload})
     })
 
@@ -194,6 +195,7 @@ describe('useRecipe Test Suite', function () {
         await act(() => result.current.editRecipe(mockEditPayload))
 
         expect(result.current.isError).toBeTruthy()
+        expect(result.current.isRecipeEdited).toBeFalsy()
         expect(result.current.recipe).toEqual({id: '100', ...mockCreatePayload})
     })
 });
