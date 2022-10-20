@@ -1,4 +1,4 @@
-import useRecipe from "./RecipeHooks";
+import useRecipe from "./useRecipe";
 import RecipeEditBase from "./RecipeEditBase";
 
 export default function RecipeCreate() {

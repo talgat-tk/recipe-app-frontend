@@ -1,4 +1,4 @@
-import useRecipe from "./RecipeHooks";
+import useRecipe from "./useRecipe";
 import RecipeEditBase from "./RecipeEditBase";
 import {useEffect} from "react";
 import {useParams} from "react-router-dom";
