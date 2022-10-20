@@ -53,22 +53,24 @@ export default function RecipeEditBase(props) {
 
     return (
         <div>
-            <h2>{props.title}</h2>
+            <h2 data-testid='recipe-heading'>
+                {props.title}
+            </h2>
             <div>
                 <button onClick={handleBackClick}>Back</button>
             </div>
             <div>
-                <input type="text" value={name} onChange={handleNameChange}/>
+                <input data-testid='recipe-name' type="text" value={name} onChange={handleNameChange}/>
             </div>
             <div>
-                <textarea value={description} onChange={handleDescriptionChange}></textarea>
+                <textarea data-testid='recipe-description' value={description} onChange={handleDescriptionChange}></textarea>
             </div>
             <div>
                 <div>
-                    <input type="text" value={newIngredient} onChange={handleNewIngredientChange}/>
+                    <input data-testid='recipe-new-ingredient' type="text" value={newIngredient} onChange={handleNewIngredientChange}/>
                 </div>
                 <div>
-                    <button onClick={addIngredient}>Add Ingredient</button>
+                    <button data-testid='recipe-add-ingredient-btn' onClick={addIngredient}>Add Ingredient</button>
                 </div>
             </div>
             <div>
@@ -80,7 +82,9 @@ export default function RecipeEditBase(props) {
                 })}
             </div>
             <div>
-                <button onClick={handleSaveClick}>Save</button>
+                <button data-testid='recipe-save-btn' onClick={handleSaveClick}>
+                    Save
+                </button>
             </div>
         </div>
     )
