@@ -7,7 +7,7 @@ export default function RecipeCreate() {
         description: '',
         ingredients: [],
     }
-    const {createRecipe, isError} = useRecipe()
+    const {recipe, createRecipe, isError} = useRecipe()
 
     function saveRecipe(newRecipe) {
         createRecipe(newRecipe)
@@ -19,7 +19,10 @@ export default function RecipeCreate() {
                 title='Create Recipe'
                 {...initialRecipe}
                 saveRecipe={saveRecipe}/>
-            {isError && <p>Error while creating</p>}
+            {recipe &&
+                <p data-testid='success-message'>Created</p>}
+            {isError &&
+                <p data-testid='error-message'>Error while creating</p>}
         </div>
     )
 }
