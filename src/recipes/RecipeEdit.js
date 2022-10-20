@@ -5,7 +5,7 @@ import {useParams} from "react-router-dom";
 
 export default function RecipeEdit() {
     const {recipeId} = useParams()
-    const {recipe, fetchRecipe, editRecipe, isError} = useRecipe()
+    const {recipe, fetchRecipe, editRecipe, isRecipeEdited, isError} = useRecipe()
 
     useEffect(() => {
         fetchRecipe(recipeId)
@@ -21,11 +21,13 @@ export default function RecipeEdit() {
                 title='Edit Recipe'
                 {...recipe}
                 saveRecipe={saveRecipe}/>}
-            {isError && <p>Error while fetching/saving</p>}
+            {isError && <p data-testid='error-message'>Error while saving</p>}
+            {isRecipeEdited && <p data-testid='success-message'>Edited</p>}
         </div>
     ) : (
         <div>
-            <h2>Loading...</h2>
+            <h2 data-testid='recipe-loading'>Loading...</h2>
+            {isError && <p data-testid='error-message'>Error while fetching</p>}
         </div>
     )
 }
