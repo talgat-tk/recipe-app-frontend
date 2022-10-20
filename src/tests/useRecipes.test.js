@@ -14,6 +14,7 @@ describe('useRecipes Fetching Test Suite', function () {
         const {result} = renderHook(useRecipes)
 
         expect(result.current.recipes).toEqual([])
+        expect(result.current.isError).toBeFalsy()
     })
 
     test('Fetch with correct server', async function () {
@@ -45,7 +46,7 @@ describe('useRecipes Fetching Test Suite', function () {
 
         await act(result.current.fetchRecipes)
 
-        expect(JSON.stringify(result.current.recipes)).toEqual(JSON.stringify(mockRecipes))
+        expect(result.current.recipes).toEqual(mockRecipes)
         expect(result.current.isError).toBeFalsy()
     })
 
@@ -117,8 +118,8 @@ describe('useRecipes Deleting Test Suite', function () {
         expect(result.current.recipes.length).toEqual(2)
 
         expect(result.current.isError).toBeFalsy()
-        expect(JSON.stringify(result.current.recipes))
-            .toEqual(JSON.stringify([mockRecipes[0], mockRecipes[2]]))
+        expect(result.current.recipes)
+            .toEqual([mockRecipes[0], mockRecipes[2]])
     })
 
     test('Delete with incorrect server', async function() {
@@ -134,7 +135,7 @@ describe('useRecipes Deleting Test Suite', function () {
 
         await act(() => result.current.deleteRecipe('2'))
 
-        // expect(result.current.isError).toBeTruthy()
-        expect(JSON.stringify(result.current.recipes)).toEqual(JSON.stringify(mockRecipes))
+        expect(result.current.isError).toBeTruthy()
+        expect(result.current.recipes).toEqual(mockRecipes)
     })
 })
