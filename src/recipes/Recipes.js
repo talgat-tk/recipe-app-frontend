@@ -15,21 +15,23 @@ export default function Recipes() {
         navigate('/create')
     }
 
-    return recipes ? (
+    return recipes.length > 0 ? (
         <div>
-            <h2>Recipes</h2>
+            <h2 data-testid='recipes-heading'>Recipes</h2>
             <div>
-                <button onClick={handleCreateClick}>Create Recipe</button>
+                <button onClick={handleCreateClick} data-testid='recipes-create-btn'>
+                    Create Recipe
+                </button>
             </div>
 
             {recipes && recipes.map(recipe =>
                 <Recipe key={recipe.id} {...recipe} deleteRecipe={deleteRecipe}/>)}
-
-            {isError && <p>Error while fetching/deleting</p>}
         </div>
     ) : (
         <div>
-            <h2>Loading...</h2>
+            <h2 data-testid='recipes-heading'>Loading...</h2>
+
+            {isError && <p data-testid='recipes-error'>Error while fetching/deleting</p>}
         </div>
     )
 }
