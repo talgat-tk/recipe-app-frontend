@@ -21,6 +21,7 @@ export default function useRecipe() {
     function createRecipe(newRecipe) {
         axios.post(RECIPES_URL, newRecipe)
             .then(() => {
+                setRecipe(newRecipe)
                 setIsError(false)
             })
             .catch(error => {
@@ -32,6 +33,7 @@ export default function useRecipe() {
     function editRecipe(newRecipe) {
         axios.put(`${RECIPES_URL}${recipe.id}/`, newRecipe)
             .then(() => {
+                setRecipe(newRecipe)
                 setIsError(false)
             })
             .catch(error => {
